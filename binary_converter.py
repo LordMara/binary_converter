@@ -1,2 +1,2 @@
-a = input()
-number = a.split()
+print("Hello Word")
+print("Magic")
