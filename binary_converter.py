@@ -7,6 +7,17 @@ def ad_feture(output, output2):     # print output in beatiful way
             "-"*len(output) + "---" + "-"*len(output2) + "-/")
 
 
+def binary_to_dot(a):
+    power_of_two = 0
+    y = 0
+    for i in range(len(a) - 1, -1, -1):
+        a[i] = int(a[i])
+        c = a[i]*pow(2, power_of_two)
+        y += c
+        power_of_two += 1
+    return y
+
+
 while True:     # to protect program from users and human error
     a = input()
     number = a.split(" ")
@@ -60,11 +71,7 @@ if number[1] == 2:
     if number_to_change_after_dot is not None:      # for .dec change from binary
         dot_dec_number = 0
         dot_power_of_two = -1
-        for i in range(len(number_to_change_to_dot) - 1, -1, -1):       # before dot part
-            number_to_change_to_dot[i] = int(number_to_change_to_dot[i])
-            c = number_to_change_to_dot[i]*pow(2, power_of_two)
-            dec_number += c
-            power_of_two += 1
+        dec_number = binary_to_dot(number_to_change_to_dot)
         for z in range(0, len(number_to_change_after_dot)):         # after dot part
             number_to_change_after_dot[z] = int(number_to_change_after_dot[z])
             d = number_to_change_after_dot[z]*pow(2, dot_power_of_two)
@@ -76,13 +83,9 @@ if number[1] == 2:
         else:
             dec_number = dec_number + dot_dec_number
     else:       # if we don't have .dec
-        for i in range(len(number_to_change_to_dot) - 1, -1, -1):
-            number_to_change_to_dot[i] = int(number_to_change_to_dot[i])
-            c = number_to_change_to_dot[i]*pow(2, power_of_two)
-            dec_number += c
-            power_of_two += 1
-            if helper != 0:
-                dec_number = dec_number*(-1)
+        dec_number = binary_to_dot(number_to_change_to_dot)
+        if helper != 0:
+            dec_number = dec_number*(-1)
     dec_number = str(dec_number)
     answer = ad_feture(dec_number, n)
     print(answer)
