@@ -28,8 +28,10 @@ while True:     # to protect program from users and human error
                 test.pop(g)
             for q in range(0, len(test)):       # test only digits in our input ( 0 or 1)
                 test[q] = int(test[q])
-                if test[q] > 1:
+            for x in range(0, len(test)):
+                if test[x] > 1:
                     print("Invalid number!")
+                    break
             else:
                 break
         else:
